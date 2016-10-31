@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3>{{article.title}}</h3>
+                {{#if article.deleted}}
+                    <p class="text-danger">Deleted</p>
+                {{else}}
+                    <p class="text-danger">Not Deleted</p>
+                {{/if}}
+
+                <p class="text-success">Views: {{article.views}}</p>
+                <p class="text-success">Date: {{article.date}}</p>
+
+            </div>
+            <div class="panel-body text-center">
+                <p>{{article.description}}</p>
+                {{#if article.image_path}}
+                    <img src="/public/img/uploads/{{article.image_path}}" alt="" class="img-responsive">
+                {{/if}}
+                <p></p>
+                <form action="/articles/details/{{article._id}}/change-state" method="post">
+                    {{#if article.deleted}}
+                        <button class="btn btn-default">Undo delete</button>
+                    {{else}}
+                        <button class="btn btn-default">Delete</button>
+
+                    {{/if}}
+                </form>
+            </div>
+
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {{#if errors}}
+                    <div class="alert alert-danger">
+                        {{#each errors}}
+                            <p>{{ message }}</p>
+                        {{/each }}
+                    </div>
+
+                {{/if}}
+
+                <h4>Leave a Comment:</h4>
+                <form method="post" action="/articles/details/{{article._id}}/comments/create">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text"  id="username" class="form-control" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea id="comment" class="form-control" rows="3" name="comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        {{#each article.comments}}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media-body">
+                        <h4 class="media-heading">{{username}}
+                            <small>{{ date }}</small>
+                        </h4>
+                        {{ content }}
+                    </div>
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

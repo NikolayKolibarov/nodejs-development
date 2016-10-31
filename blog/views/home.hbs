@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h1>Welcome to my Blog System.</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        {{#each articles}}
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    <h3><a href="/articles/details/{{_id}}">{{title}}</a></h3>
+                    {{#if deleted}}
+                        <p class="text-danger">Deleted</p>
+                    {{else}}
+                        <p class="text-danger">Not deleted</p>
+                    {{/if}}
+                    <p class="text-success">Views: {{views}}</p>
+                </div>
+                <div class="panel-body text-center">
+                    <p>{{description}}</p>
+
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

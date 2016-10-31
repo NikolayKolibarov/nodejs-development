@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        {{#each todos}}
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                <h3><a href="/todos/details/{{_id}}">{{title}}</a></h3>
+                <p class="text-danger">{{state}}</p>
+            </div>
+            <div class="panel-body text-center">
+                <p>{{description}}</p>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
